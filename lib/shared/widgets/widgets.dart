@@ -1,0 +1,15 @@
+//export 'alert/';
+// export 'custom_table/';
+//export 'delete/';
+//export 'dropDown/';
+// export 'dynamic.table/';
+//export 'save/';
+//export 'table/';
+export 'active_box.dart';
+export 'app_button.dart';
+export 'app_text_field.dart';
+export 'app_visibility.dart';
+export 'custom.dropdown.wrapped.dart';
+export 'custom.text.fromfield.dart';
+export 'custom.textfield.dart';
+export 'widget.perfil.dart';

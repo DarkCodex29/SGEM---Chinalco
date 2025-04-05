@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="SGEM">
+  <link rel="apple-touch-icon" href="./assets/images/logo.png">
+  <link rel="icon" type="image/png" href="./assets/images/logo.png"/>
+  <title>SGEM</title>
+  <link rel="manifest" href="manifest.json">
+
+  <script>
+    const serviceWorkerVersion = '{{flutter_service_worker_version}}';
+  </script>
+
+  <script src="flutter.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.12.313/build/pdf.js"></script>
+  <script>
+    if (typeof pdfjsLib === "undefined") {
+      console.error("pdfjsLib no se cargó correctamente.");
+    } else {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@2.12.313/build/pdf.worker.min.js";
+      pdfRenderOptions = {
+        cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.12.313/cmaps/',
+        cMapPacked: true,
+      };
+    }
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('flutter_service_worker.js').then((registration) => {
+        console.log('Service Worker registrado:', registration);
+      }).catch((error) => {
+        console.error('Error al registrar el Service Worker:', error);
+      });
+    } else {
+      console.log('El navegador no soporta Service Workers.');
+    }
+  </script>
+  <script>
+    const pdfWorker = new Worker('pdf_worker.js');
+  </script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function(ev) {
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            appRunner.runApp();
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
